@@ -1,0 +1,11 @@
+
+
+=================================
+無條件捨棄
+var temp:Number =Math.random()*8; 
+				
+				trace(temp);
+								
+				temp = Math.floor(temp*100)/100;
+				
+				trace(temp);
