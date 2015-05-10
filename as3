@@ -11,4 +11,10 @@
 	
 =================================
 
+
+	var temp:Number =Math.random()*8; 
+	temp = Math.floor(temp*100)/100;
+	trace(temp);
+	trace(temp.toFixed(2));
+
 =================================
