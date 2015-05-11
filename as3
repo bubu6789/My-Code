@@ -3,18 +3,12 @@
 =================================
 無條件捨棄小數第二位
 =================================
-
-	var temp:Number =Math.random()*8; 
-	temp = Math.floor(temp*100)/100;
-	trace(temp);
+	var temp = 0.999999;
+	var x100   = Number((temp*100).toFixed(3));
+	x100       = int(x100);
+	temp	   = x100*0.01;
 	trace(temp.toFixed(2));
 	
 =================================
 
 
-	var temp:Number =Math.random()*8; 
-	temp = Math.floor(temp*100)/100;
-	trace(temp);
-	trace(temp.toFixed(2));
-
-=================================
