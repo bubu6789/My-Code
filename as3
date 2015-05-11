@@ -1,5 +1,336 @@
 
 
+
+--------------------------------------------------------------------------------
+影格事件
+--------------------------------------------------------------------------------
+
+	mc.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+	function onEnterFrame(event:Event):void 
+	{ 
+    		
+ 	}  	
+
+	
+--------------------------------------------------------------------------------
+滑鼠點選
+--------------------------------------------------------------------------------
+
+	import flash.events.MouseEvent;
+	
+	_CButton.addEventListener(MouseEvent.MOUSE_DOWN,function(event:MouseEvent){
+
+		trace("click");
+		trace( event.target.name);
+
+	});
+
+
+--------------------------------------------------------------------------------
+自訂事件
+--------------------------------------------------------------------------------
+
+		import flash.events.Event;
+
+		_CMenuArea.addEventListener("Button-click",actionHandler);
+
+
+		snedEvent("Button-click");
+		public function snedEvent(action:String){
+									
+			this.dispatchEvent(new Event(action));
+			
+			
+		}
+
+
+--------------------------------------------------------------------------------
+flash loader 外部載入
+--------------------------------------------------------------------------------
+
+
+    import flash.events.*;
+    import flash.net.*;
+
+		public function loadData(url:String):void{
+	
+			var loader:URLLoader = new URLLoader();
+			
+			loader.addEventListener(Event.COMPLETE, completeHandler);
+			loader.addEventListener(IOErrorEvent.IO_ERROR,errorHandler );
+			loader.load(new URLRequest(url));
+			
+						
+		}
+				
+       		private function completeHandler(event:Event):void {
+						
+			this.addChild( event.target.content);
+        
+        	}
+		
+        	private function errorHandler(e:IOErrorEvent):void {
+           		trace(e);
+        	}
+
+
+
+--------------------------------------------------------------------------------
+Timer
+--------------------------------------------------------------------------------
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+
+	private function initTimer(){
+
+		var myTimer: Timer = new Timer(1000);
+		myTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent){
+
+			trace("timer");
+
+		});
+		myTimer.start();
+			
+	}
+
+
+
+--------------------------------------------------------------------------------
+URL參數
+--------------------------------------------------------------------------------
+
+
+
+	private  var _WebURL ="http://127.0.0.1"
+	private function initURL() {
+			
+		var path =  this.loaderInfo.parameters["url"];
+		if(path != null)  path = "http:/";
+			 
+	}
+
+
+
+--------------------------------------------------------------------------------
+呼叫 javascript 
+--------------------------------------------------------------------------------
+
+	import flash.external.ExternalInterface;
+	
+	ExternalInterface.call("flashMessage","close",,"");
+
+	<script>
+		function flashMessage($action,$){
+			alert("value"+$text);
+		}
+
+	</script>
+
+
+--------------------------------------------------------------------------------
+開啟網址
+--------------------------------------------------------------------------------
+
+
+	var url:String = "http://www.adobe.com"; 
+	var urlReq:URLRequest = new URLRequest(url); 
+	navigateToURL(urlReq);
+	navigateToURL(urlReq ,"_self");
+
+
+--------------------------------------------------------------------------------
+flash bulider
+--------------------------------------------------------------------------------
+
+	固定轉向
+
+	stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+	stage.autoOrients = false;
+
+	
+
+
+--------------------------------------------------------------------------------
+for loop
+--------------------------------------------------------------------------------
+
+
+	var myArray:Array = ["one", "two", "three"]; 
+
+	for (var i:String in myArray) 
+	{ 
+	    trace(myArray[i]); 
+	} 
+
+	for (var i = 0; i < items.length; i++) 
+	{ 
+		trace(items[i]); 
+					
+	}
+
+
+--------------------------------------------------------------------------------
+分割字串
+--------------------------------------------------------------------------------
+
+
+	var str:String = items[i];
+	var sp:int = str.indexOf("=");
+	if(sp != -1){
+		
+		var key:String   = str.substr(0,sp);
+		var value:String = str.substr(sp+1,str.length);
+					
+	}
+
+------------------------------------------------------------------------------
+TextField 
+------------------------------------------------------------------------------
+
+	var text1:TextField = new TextField();	
+
+	text1.htmlText = "<b>粗體粗體</b>";
+
+	text1.textColor=0x330000;
+
+
+
+------------------------------------------------------------------------------
+格式化數字
+------------------------------------------------------------------------------
+
+	import flash.globalization.*;
+
+	var numFormat:NumberFormatter = new NumberFormatter(LocaleID.DEFAULT);
+	numFormat.leadingZero   = true;
+	numFormat.trailingZeros = true;
+	numFormat.fractionalDigits = 0;
+
+	numFormat.formatNumber(Number("521.02"))
+
+------------------------------------------------------------------------------
+XML
+------------------------------------------------------------------------------
+
+
+	-------> all data
+
+	var xmlLength = xml.children().length();
+	for (var i:int = 0; i < xmlLength ; i++)
+	{ 
+			
+		var xName = xml.children()[i].name();
+		var xData = xml.children()[i];
+				
+    	} 
+
+	@get value
+	var rate = xml.child("date");
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+建立 MovieClip 畫圖
+--------------------------------------------------------------------------------
+
+		var mc:MovieClip 
+
+
+
+		private var mc:MovieClip = new MovieClip();
+
+		public function initMovieClip() {
+						
+			mc.graphics.beginFill(0xFFFFFF);
+			mc.graphics.drawRect(94, 30, 814, 480);
+			mc.alpha = 0;
+			mc.graphics.endFill();
+			mc.mouseChildren = fasle;
+			
+			_CStopBackground.visible = true;
+			this.addChild(_CStopBackground);
+						
+		}
+
+--------------------------------------------------------------------------------
+MovieClip 全部元件 (移除)
+--------------------------------------------------------------------------------
+
+
+	for (var i:int = 0; i < mc.numChildren; i++)
+	{ 
+	
+		mc.removeChildAt(0);
+	
+	}
+
+
+
+--------------------------------------------------------------------------------
+加入遮色片
+--------------------------------------------------------------------------------
+
+		import flash.display.Shape;
+
+		private function initMask() {
+			
+			var square:Shape = new Shape(); 
+			square.graphics.lineStyle(1, 0x000000); 
+			square.graphics.beginFill(0xff0000); 
+			square.graphics.drawRect(0, 0, 976, 695); 
+			square.graphics.endFill(); 
+			this.addChild(square); 
+			this.mask =square ;
+			
+		}
+
+
+
+--------------------------------------------------------------------------------
+事件
+--------------------------------------------------------------------------------
+		
+
+		public function snedEvent(action:String){
+									
+			this.dispatchEvent(new Event(action));
+			
+		}
+
+
+		public function snedEvent(action:String){
+									
+			this.dispatchEvent(new TextEvent(action,false,false,"test"));
+									
+		}
+
+
+-------------
+(stage) null
+-------------
+
+public function Page05DocumentClass()
+{
+    if (stage){
+        initApp();
+    } else {
+        addEventListener(Event.ADDED_TO_STAGE, initApp);
+    }
+}
+        
+private function initApp(evt:Event=null):void
+{
+    stage.scaleMode = StageScaleMode.NO_SCALE;
+    stage.align = StageAlign.TOP_LEFT;
+}
+
+
+
+
 =================================
 無條件捨棄小數第二位(避免小數無進位)
 =================================
