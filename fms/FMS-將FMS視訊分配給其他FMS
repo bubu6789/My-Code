@@ -1,0 +1,47 @@
+
+
+
+application.onAppStart = function()
+{
+
+  ......
+  ....
+  ..
+
+  
+  
+	
+	this.myNC = new NetConnection();  
+	this.myNC.onStatus = function (info){  
+
+ 
+		switch (info.code) {
+		case "NetConnection.Connect.Success" :
+		
+			application.myStream = Stream.get("livestream1");
+			application.myStream.onStatus = function(info){   
+  				 trace(info.code);    
+			};
+			
+			
+			if (application.myStream){
+				application.myStream.play("livestream1",-2, -1,false,application.myNC);
+			}
+			trace("连接成功!");  
+			
+			break;
+			case "NetConnection.Connect.Failed" :
+			trace("连接失败!");
+			break;
+			case "NetConnection.Connect.Rejected" :
+			trace("连接失败!");
+			break;
+		}
+	}
+	
+	this.myNC.connect("rtmp://192.168.0.1/live"); 
+
+
+
+
+}
